@@ -57,7 +57,7 @@ alias aliass='source ~/.bash_aliases'
 source ~/.bash_aliases
 ```
 
-Now you should be able to run your main script using viteinstall and reload your aliases using aliass.
+Now you should be able to run your main script using the alias of your choice and reload your aliases using `aliass`.
 
 ### Using the script
 
