@@ -22,7 +22,7 @@ Scripts are non-executable by default for security reasons. To make the [vite-fu
 
 ```
 chmod +x vite-full.sh
-chmod +x root/vite-full-deployment-scripts/*.sh
+chmod +x chmod +x vite-full-deployment-scripts/*.sh
 ```
 
 ### Setting Up Aliases in Ubuntu 22.04 LTS
