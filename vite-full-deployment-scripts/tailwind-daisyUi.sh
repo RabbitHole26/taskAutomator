@@ -1,3 +1,6 @@
+# * Use Bash to interpret and execute this script
+#!/bin/bash
+
 # * Source the external functions file
 source "$(dirname "${BASH_SOURCE[0]}")/../general-functions.sh"
 

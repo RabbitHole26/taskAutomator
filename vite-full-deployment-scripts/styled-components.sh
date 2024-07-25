@@ -1,3 +1,6 @@
+# * Use Bash to interpret and execute this script
+#!/bin/bash
+
 echo
 echo "########## DEPLOYING STYLED-COMPONENTS ##########"
 echo
