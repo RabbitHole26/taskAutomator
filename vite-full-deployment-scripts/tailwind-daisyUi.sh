@@ -1,3 +1,6 @@
+# * Source the external functions file
+source "$(dirname "${BASH_SOURCE[0]}")/../general-functions.sh"
+
 echo
 echo "########## DEPLOYING TAILWIND + daisyUI ##########"
 echo
