@@ -36,7 +36,7 @@ echo
 # #######################################################################################
 
 invalid_input_message="Invalid input. Please enter Y to continue or N to abort."
-deployment_script_dir="$SCRIPT_DIR/vite-full-deployment-scripts"
+deployment_script_dir="$SCRIPT_DIR/vite-react-deployment-scripts"
 
 # #######################################################################################
 # SCAFFOLD PROJECT
