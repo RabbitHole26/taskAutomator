@@ -14,20 +14,20 @@ This section provides instructions on how to make the scripts executable and set
 
 ### Making Scripts Executable
 
-Scripts are non-executable by default for security reasons. To make the [vite-full.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-full.sh) and [deployment scripts](https://github.com/RabbitHole26/taskAutomator/tree/main/vite-full-deployment-scripts) executable, follow these steps:
+Scripts are non-executable by default for security reasons. To make the [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) and [deployment scripts](https://github.com/RabbitHole26/taskAutomator/tree/main/vite-react-deployment-scripts) executable, follow these steps:
 
 1. Open your terminal.
 2. Navigate to the root directory containing the script.
 3. Run the following command:
 
 ```
-chmod +x vite-full.sh
-chmod +x chmod +x vite-full-deployment-scripts/*.sh
+chmod +x vite-react.sh
+chmod +x chmod +x vite-react-deployment-scripts/*.sh
 ```
 
 ### Setting Up Aliases in Ubuntu 22.04 LTS
 
-Aliases allow you to create shortcuts for your scripts. Here’s how to set up an alias for running the [vite-full.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-full.sh) script and an alias to source the alias file itself.
+Aliases allow you to create shortcuts for your scripts. Here’s how to set up an alias for running the [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script and an alias to source the alias file itself.
 
 1. Open your terminal.
 2. Create or edit your aliases file. You can use `nano` or any text editor of your choice:
@@ -39,13 +39,14 @@ nano ~/.bash_aliases
 3. Add the following lines to the `~/.bash_aliases` file:
 
 ```
-alias <alias-name>='<absolute-path>/vite-full.sh'
+alias <alias-name>='<absolute-path>/vite-react.sh'
+alias <alias-name>='source ~/.bash_aliases'
 alias aliass='source ~/.bash_aliases'
 ```
 
-> Please note that alias for the aliases file is defined as `aliass` with double `s` to prevent conflicts with the `alias` command natively available in `Ubuntu 22.04 LTS`.
+> Please note that alias for the aliases file is defined as `aliass` with double `s` to prevent conflicts with the `alias` command natively available in `Ubuntu 22.04 LTS`. You need to be aware of this when naming your aliases in order to prevent conflicts with existing commands.
 
-> Replace `<absolute-path>` with with the absolute path to your [vite-full.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-full.sh) script.
+> Replace `<absolute-path>` with with the absolute path to your [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script.
 
 > Replace `<alias-name>` with the name of alias which will be used to run the script.
 
@@ -69,9 +70,11 @@ To use the script, follow these steps:
 
 > To run the script directly (without an alias), you will need to provide the relative or absolute path to the script. For this reason, it is recommended to use aliases.
 
+> IMPORTANT: `vite-react.sh` is designed to be executed in the root project directory. If you execute the script outside the designated project directory, it will treat the current directory as the root project directory.
+
 ## Customizing Dependency Installation
 
-By commenting out the deployment script lines in the [vite-full.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-full.sh) script, you can choose which dependencies to install. For example, if you don't want to install `tailwind-daisyUi`, you can comment out the relevant line:
+By commenting out the deployment script lines in the [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script, you can choose which dependencies to install. For example, if you don't want to install `tailwind-daisyUi`, you can comment out the relevant line:
 
 ### Original (dependency installation enabled):
 
@@ -107,7 +110,9 @@ TaskAutomator is designed to be extensible, allowing you to add your own scripts
 
 ## Caveats
 
-Each [deployment script](https://github.com/RabbitHole26/taskAutomator/tree/main/vite-full-deployment-scripts) contains hardcoded instructions for installing dependencies. If a dependency author changes the installation process, the corresponding deployment script must be updated. Always check the official documentation of the dependencies for any updates or changes.
+Each [deployment script](https://github.com/RabbitHole26/taskAutomator/tree/main/vite-react-deployment-scripts) contains hardcoded instructions for installing dependencies. If a dependency author changes the installation process, the corresponding deployment script must be updated. Always check the official documentation of the dependencies for any updates or changes.
+
+The `RUN VSCODE` section in [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) includes a command to run the `dev` script located in the `package.json` file of the scaffolded project. This command is delayed by 2 seconds (`sleep 2 && npm run dev`). You might want to increase the delay depending on how fast your machine is able to load VS Code.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/RabbitHole26/taskAutomator/blob/main/LICENSE) file for details.
