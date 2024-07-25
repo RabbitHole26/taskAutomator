@@ -249,6 +249,17 @@ else
 	echo
 fi
 
+if is_commented "tailwind-daisyUi.sh"; then
+  if file_exists "./src/index.css"; then
+    > ./src/index.css
+    echo "Cleared ./src/index.css"
+    echo
+  else
+    echo "Error: ./src/index.css not found"
+    echo
+  fi
+fi
+
 # * Check if directory "./src/assets" exists to clear its content
 if directory_exists "./src/assets"; then
 	# Force remove the content of the directory
