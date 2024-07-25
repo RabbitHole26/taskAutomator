@@ -43,8 +43,8 @@ echo
 echo "########## SCAFFOLDING THE PROJECT ##########"
 echo
 
-# * Create vite->react->js project in the current folder
-npm create vite@latest .
+# * Create vite->react->js-swc project in the current folder
+npm create vite@latest . -- --template react-swc
 
 while true; do
   # * Ask the user if they want to continue. Allow the user to exit script if Vite scaffolding fails or is aborted
