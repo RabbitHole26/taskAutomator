@@ -8,11 +8,11 @@ The initial set of scripts automates the setup of a `Vite + React` development e
 
 > It is important to note that if any external dependencies change their installation or usage methods, the corresponding scripts will need to be updated.
 
-## Usage on Unix-like Systems
+## Usage on unix-like systems
 
 This section provides instructions on how to make the scripts executable and set up aliases for easy access.
 
-### Making Scripts Executable
+### Making scripts executable
 
 Scripts are non-executable by default for security reasons. To make the [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) and [deployment scripts](https://github.com/RabbitHole26/taskAutomator/tree/main/vite-react-deployment-scripts) executable, follow these steps:
 
@@ -20,41 +20,46 @@ Scripts are non-executable by default for security reasons. To make the [vite-re
 2. Navigate to the root directory containing the script.
 3. Run the following command:
 
-```
+```bash
 chmod +x vite-react.sh
-chmod +x chmod +x vite-react-deployment-scripts/*.sh
+chmod +x vite-react-deployment-scripts/*.sh
 ```
 
-### Setting Up Aliases in Ubuntu 22.04 LTS
+### Setting up aliases in Ubuntu 22.04 LTS
 
 Aliases allow you to create shortcuts for your scripts. Here’s how to set up an alias for running the [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script and an alias to source the alias file itself.
 
 1. Open your terminal.
 2. Create or edit your aliases file. You can use `nano` or any text editor of your choice:
 
-```
+```bash
 nano ~/.bash_aliases
 ```
 
 3. Add the following lines to the `~/.bash_aliases` file:
 
-```
+```bash
+# alias for the vite-react.sh script
 alias <alias-name>='<absolute-path>/vite-react.sh'
-alias <alias-name>='source ~/.bash_aliases'
-alias aliass='source ~/.bash_aliases'
+
+# alias for reloading bash_aliases 
+alias reload_aliases='source ~/.bash_aliases'
+
+# alias for accessing the file with aliases
+alias aliass='nano ~/.bash_aliases'
 ```
 
 > Please note that alias for the aliases file is defined as `aliass` with double `s` to prevent conflicts with the `alias` command natively available in `Ubuntu 22.04 LTS`. You need to be aware of this when naming your aliases in order to prevent conflicts with existing commands.
 
-> Replace `<absolute-path>` with with the absolute path to your [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script.
+> Replace `<absolute-path>` with the absolute path to your [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script.
 
-> Replace `<alias-name>` with the name of alias which will be used to run the script.
+> Replace `<alias-name>` with the name of the alias which will be used to run the script.
 
 4. Save the file and exit the editor (`Ctrl + S` to save and `Ctrl + X` to exit in `nano`).
 
 5. Apply the aliases by running:
 
-```
+```bash
 source ~/.bash_aliases
 ```
 
@@ -68,17 +73,17 @@ To use the script, follow these steps:
 2. Set up the aliases as outlined in the aliases section.
 3. Execute the main script with the alias or directly.
 
-> To run the script directly (without an alias), you will need to provide the relative or absolute path to the script. For this reason, it is recommended to use aliases.
+> > To run the script directly (without an alias), you need to provide the relative or absolute path to the script. Therefore, it is recommended to use aliases.
 
 > IMPORTANT: `vite-react.sh` is designed to be executed in the root project directory. If you execute the script outside the designated project directory, it will treat the current directory as the root project directory.
 
-## Customizing Dependency Installation
+## Customizing dependency installation
 
 By commenting out the deployment script lines in the [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script, you can choose which dependencies to install. For example, if you don't want to install `tailwind-daisyUi`, you can comment out the relevant line:
 
 ### Original (dependency installation enabled):
 
-```
+```bash
 # #######################################################################################
 # DEPLOY TAILWIND + daisyUI
 # #######################################################################################
@@ -88,7 +93,7 @@ By commenting out the deployment script lines in the [vite-react.sh](https://git
 
 ### Modified (dependency installation disabled):
 
-```
+```bash
 # #######################################################################################
 # DEPLOY TAILWIND + daisyUI
 # #######################################################################################
@@ -100,13 +105,14 @@ By commenting out the deployment script lines in the [vite-react.sh](https://git
 
 This flexibility allows you to customize your environment based on your project needs.
 
-## Adding Your Own Scripts to TaskAutomator
+## Adding your own deployment scripts to vite-react.sh
 
-TaskAutomator is designed to be extensible, allowing you to add your own scripts to automate additional tasks. Here’s a step-by-step guide on how to integrate your own scripts into the TaskAutomator framework.
+The `vite-react.sh` script is designed to be extensible, allowing you to add your own deployment scripts to automate additional tasks. Here’s a step-by-step guide:
 
 1. **Write Your Script**: Develop your script using `bash`. Ensure it performs the desired tasks efficiently and includes necessary error handling.
-2. **Save the Script**: Place your script in your root script directory (or any designated directory for custom scripts). For consistency, it’s recommended to use a clear naming convention.
-3. **Make Your Script Executable**: Set the execute permission for your script as explained in [Making Scripts Executable](#making-scripts-executable).
+2. **Save the Script**: Place your script in the `vite-react-deployment-scripts`. For consistency, it’s recommended to use a clear naming convention.
+3. **Add the path to your script to vite-react.sh**: The path needs to meet the following format `"$deployment_script_dir/<script-name>.sh"`.
+4. **Make Your Script Executable**: Set the execute permission for your script as explained in [Making Scripts Executable](#making-scripts-executable).
 
 ## Caveats
 
