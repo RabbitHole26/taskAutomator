@@ -49,11 +49,11 @@ alias reload_aliases='source ~/.bash_aliases'
 alias aliass='nano ~/.bash_aliases'
 ```
 
-> Please note that alias for the aliases file is defined as `aliass` with double `s` to prevent conflicts with the `alias` command natively available in `Ubuntu 22.04 LTS`. You need to be aware of this when naming your aliases in order to prevent conflicts with existing commands.
+> 👉 Please note that alias for the aliases file is defined as `aliass` with double `s` to prevent conflicts with the `alias` command natively available in `Ubuntu 22.04 LTS`. You need to be aware of this when naming your aliases in order to prevent conflicts with existing commands.
 
-> Replace `<absolute-path>` with the absolute path to your [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script.
+> 👉 Replace `<absolute-path>` with the absolute path to your [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) script.
 
-> Replace `<alias-name>` with the name of the alias which will be used to run the script.
+> 👉 Replace `<alias-name>` with the name of the alias which will be used to run the script.
 
 4. Save the file and exit the editor (`Ctrl + S` to save and `Ctrl + X` to exit in `nano`).
 
@@ -73,7 +73,7 @@ To use the script, follow these steps:
 2. Set up the aliases as outlined in the aliases section.
 3. Execute the main script with the alias or directly.
 
-> > To run the script directly (without an alias), you need to provide the relative or absolute path to the script. Therefore, it is recommended to use aliases.
+> To run the script directly (without an alias), you need to provide the relative or absolute path to the script. Therefore, it is recommended to use aliases.
 
 > IMPORTANT: `vite-react.sh` is designed to be executed in the root project directory. If you execute the script outside the designated project directory, it will treat the current directory as the root project directory.
 
