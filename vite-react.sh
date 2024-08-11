@@ -301,8 +301,9 @@ while true; do
 	if [ "$choice" = "Y" ]; then
 		# Check if file exists
 		if file_exists "./src/main.jsx"; then
-			# Modify the content of ./src/main.jsx
-			sed -i -E 's|^import React from '\''react'\''|// &|; s|<React.StrictMode>|//&|; s|</React.StrictMode>,|//&|' ./src/main.jsx
+			# * Modify the content of ./src/main.jsx
+			# sed -i -E 's|^import React from '\''react'\''|// &|; s|<React.StrictMode>|//&|; s|</React.StrictMode>,|//&|' ./src/main.jsx
+			sed -i -E 's|^import \{ StrictMode \} from '\''react'\''|// &|; s|<StrictMode>|//&|; s|</StrictMode>|//&|' ./src/main.jsx
 			echo
 			echo "Modified ./src/main.jsx"
 			echo
