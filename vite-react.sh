@@ -163,16 +163,16 @@ else
 	echo "Error: package.json not found"
 fi
 
-# * Modify the "rules" script in .eslintrc.cjs (disable some of the eslint validations which might be a bit annoying)
-if [ -f ".eslintrc.cjs" ]; then
-	# Use sed to modify the '.eslintrc.cjs' file
-	sed -i "s|'react/jsx-no-target-blank': 'off',|'react/prop-types': 'off',\n    'react/jsx-no-target-blank': 'off',|" .eslintrc.cjs
-	sed -i "s|env: { browser: true, es2020: true },|env: { browser: true, es2020: true, node: true },|" .eslintrc.cjs
+# * Modify the "rules" script in ./eslint.config.js (disable some of the eslint validations which might be a bit annoying)
+if [ -f "./eslint.config.js" ]; then
+	# Use sed to modify the './eslint.config.js' file
+	sed -i "s|'react/jsx-no-target-blank': 'off',|'react/prop-types': 'off',\n      'react/jsx-no-target-blank': 'off',|" ./eslint.config.js
+	# sed -i "s|env: { browser: true, es2020: true },|env: { browser: true, es2020: true, node: true },|" ./eslint.config.js
 	echo
-	echo "Modified 'rules' and 'env' in .eslintrc.cjs"
+	echo "Modified 'rules' in ./eslint.config.js"
 else
 	echo
-	echo "Error: .eslintrc.cjs not found"
+	echo "Error: ./eslint.config.js not found"
 fi
 
 # * Check if the file "./src/App.jsx" exists to clear its content
@@ -181,7 +181,7 @@ if file_exists "./src/App.jsx"; then
 	> ./src/App.jsx
 
 # ! this section will modify the app.jsx file to include Tailwind classes
-# ! this is to confirm if tailwind was successfully installed, when the project loads tailwind classess should take effect
+# ! this is to confirm if tailwind was successfully installed, when the project loads tailwind classes should take effect
 # ! can be disabled if not using Tailwind
 # Update ./src/App.jsx with the provided content
 	echo "import './App.css'" >> ./src/App.jsx
@@ -194,7 +194,6 @@ if file_exists "./src/App.jsx"; then
 	echo "        h-screen" >> ./src/App.jsx
 	echo "        place-items-center" >> ./src/App.jsx
 	echo "        text-6xl" >> ./src/App.jsx
-	echo "        bg-slate-800" >> ./src/App.jsx
 	echo "        text-base-content" >> ./src/App.jsx
 	echo "        '>" >> ./src/App.jsx
 	echo "        <h1>HAPPY CODING!</h1>" >> ./src/App.jsx
@@ -205,7 +204,7 @@ if file_exists "./src/App.jsx"; then
 	echo "" >> ./src/App.jsx
 	echo "export default App" >> ./src/App.jsx
 	echo
-	echo "Prepared ./src/App.jsx"
+	echo "Modified ./src/App.jsx"
 else
 	echo
 	echo "Error: ./src/App.jsx not found"
@@ -213,24 +212,12 @@ fi
 
 # * Check if the file "./index.html" exists to carry on with specific tasks
 if file_exists "./index.html"; then
-	# Clear the content of ./index.html
-	> ./index.html
 
 	# Update ./index.html with the provided content
-	echo "<!doctype html>" >> ./index.html
-	echo "<html lang=\"en\">" >> ./index.html
-	echo "  <head>" >> ./index.html
-	echo "    <meta charset=\"UTF-8\" />" >> ./index.html
-	echo "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />" >> ./index.html
-	echo "    <title>My Project</title>" >> ./index.html
-	echo "  </head>" >> ./index.html
-	echo "  <body>" >> ./index.html
-	echo "    <div id=\"root\"></div>" >> ./index.html
-	echo "    <script type=\"module\" src=\"/src/main.jsx\"></script>" >> ./index.html
-	echo "  </body>" >> ./index.html
-	echo "</html>" >> ./index.html
+	sed -i 's/Vite + React/My Project/' index.html
+	sed -i 's|<link rel="icon" type="image/svg+xml" href="/vite.svg" />|<link rel="icon" type="" href="" />|' index.html
 	echo
-	echo "Prepared ./index.html"
+	echo "Modified ./index.html"
 	echo
 else
 	echo
