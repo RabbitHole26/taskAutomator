@@ -2,14 +2,15 @@
 
 ## Version
 
-### Current version: 0.0.1
+### Current version: 0.0.2
 - **Release Date**: January 21, 2025
 - **Features**:
-  - The `tailwind-daisyUi.sh` script integrates basic daisyUi themes into the project.
-  - Bug fixes.
+  - Added option to use Google Chrome as the default browser for the 'dev' script.
+  - Supports selection between 'Windows + WSL' and 'Ubuntu' setups, based on default Chrome installation paths for Windows 11 and Ubuntu 24.04.
 
 ### Version history:
   - **0.0.0** (Initial drafts of deployment scripts)
+  - **0.0.1** (Tailwind theme integration)
 
 ## Project overview
 
