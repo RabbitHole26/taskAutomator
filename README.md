@@ -1,5 +1,16 @@
 # TaskAutomator
 
+## Version
+
+### Current version: 0.0.1
+- **Release Date**: January 21, 2025
+- **Features**:
+  - The `tailwind-daisyUi.sh` script integrates basic daisyUi themes into the project.
+  - Bug fixes.
+
+### Version history:
+  - **0.0.0** (Initial drafts of deployment scripts)
+
 ## Project overview
 
 This project provides `bash` scripts designed for Unix-like operating systems (Linux and macOS). These scripts aim to streamline workflows and allow users to focus on priority tasks. The instructions provided here are for `Ubuntu 22.04 LTS`.
