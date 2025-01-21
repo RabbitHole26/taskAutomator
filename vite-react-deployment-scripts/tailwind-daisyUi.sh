@@ -37,7 +37,12 @@ if file_exists "tailwind.config.js"; then
 	echo "  theme: {" >> tailwind.config.js
 	echo "    extend: {}," >> tailwind.config.js
 	echo "  }," >> tailwind.config.js
-	echo "  plugins: [require(\"daisyui\")]," >> tailwind.config.js
+	echo "  daisyui: {" >> tailwind.config.js
+	echo "    themes: [\"light\", \"dark\"]," >> tailwind.config.js
+	echo "  }," >> tailwind.config.js
+	echo "  plugins: [" >> tailwind.config.js
+	echo "    require(\"daisyui\")" >> tailwind.config.js
+	echo "  ]," >> tailwind.config.js
 	echo "}" >> tailwind.config.js
 	echo
 	echo "Modified Tailwind template paths in 'tailwind.config.js'."
@@ -62,6 +67,18 @@ if file_exists "./src/index.css"; then
 else
 	echo
 	echo "Error: ./src/index.css not found"
+	echo
+fi
+
+if file_exists "./index.html"; then
+
+	# Add the "data-theme" attribute to the "html" tag (apply daisyUi light theme by default)
+	sed -i 's/<html lang="en">/<html lang="en" data-theme="dark">/' index.html
+	echo "Added 'data-theme' attribute to the 'html' tag in 'index.html'."
+	echo
+else
+	echo
+	echo "Error: ./index.html not found"
 	echo
 fi
 
