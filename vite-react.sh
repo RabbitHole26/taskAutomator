@@ -24,10 +24,10 @@ source "$SCRIPT_DIR/general-functions.sh"
 
 echo
 echo
-echo  "     ###################################################################"
-echo -e "     ##                  \e[35mVITE + REACT + DEPENDENCIES\e[0m                  ##"
-echo -e "     ##                      \e[31mInstallation script\e[0m                      ##"
-echo  "     ###################################################################"
+echo  "     ###########################################################"
+echo -e "     ##             \e[35mVITE + REACT + DEPENDENCIES\e[0m               ##"
+echo -e "     ##                 \e[31mInstallation script\e[0m                   ##"
+echo  "     ###########################################################"
 echo	
 echo
 
@@ -146,10 +146,55 @@ touch .env
 echo
 echo "Created .env"
 
-# * Set BROWSER variable to Chrome in the .env file
-echo "BROWSER=google-chrome" >> .env
+while true; do
+  # * Check how to modify the .env file
+	echo
+	read -p $'\e[1;35mUse Chrome as default browser to run the project locally? (Y/N): \e[0m' choice
+
+	# * Convert the input to uppercase for case-insensitive comparison
+	choice=$(convert_to_uppercase "$choice")
+
+	if [ "$choice" = "Y" ]; then
+		while true; do
+			echo
+			read -p $'\e[1;35mWindows + WSL (Y) or Ubuntu (N)? (Y/N): \e[0m' choice
+			choice=$(convert_to_uppercase "$choice")
+			# * Set BROWSER variable to Chrome in the .env file
+			if [ "$choice" = "Y" ]; then
+				echo 'BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"' >> .env
+				echo
+				echo "Set the browser to 'google-chrome' in .env"
+				echo
+				echo "Modified .env"
+				break
+			elif [ "$choice" = "N" ]; then
+				echo "BROWSER=google-chrome" >> .env
+				echo
+				echo "Set the browser to 'google-chrome' in .env"
+				echo
+				echo "Modified .env"
+				break
+			else
+				echo
+				echo "$invalid_input_message"
+				echo
+			fi
+		done
+		break
+	# terminate the loop
+	elif [ "$choice" = "N" ]; then
+		break
+	else
+		echo
+		echo "$invalid_input_message"
+		echo
+	fi
+done
+
+# Add .env file to .gitignore
+echo ".env" >> .gitignore
 echo
-echo "Set the browser to 'google-chrome' in .env"
+echo "Added .env to .gitignore"
 
 # * Modify the "dev" script in package.json to include .env variables
 # Check if package.json exists
