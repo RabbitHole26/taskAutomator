@@ -77,7 +77,7 @@ done
 echo
 echo "Installing NPM"
 echo
-npm i
+npm install
 echo
 echo
 echo -e "\e[33m PROJECT SCAFFOLDED\e[0m"
@@ -164,15 +164,11 @@ while true; do
 				echo 'BROWSER="/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"' >> .env
 				echo
 				echo "Set the browser to 'google-chrome' in .env"
-				echo
-				echo "Modified .env"
 				break
 			elif [ "$choice" = "N" ]; then
 				echo "BROWSER=google-chrome" >> .env
 				echo
 				echo "Set the browser to 'google-chrome' in .env"
-				echo
-				echo "Modified .env"
 				break
 			else
 				echo
@@ -192,6 +188,8 @@ while true; do
 done
 
 # Add .env file to .gitignore
+echo >> .gitignore
+echo "# Exclude .env file from the remote repo" >> .gitignore
 echo ".env" >> .gitignore
 echo
 echo "Added .env to .gitignore"
@@ -225,29 +223,30 @@ if file_exists "./src/App.jsx"; then
 	# Clear the content of ./src/App.jsx
 	> ./src/App.jsx
 
-# ! this section will modify the app.jsx file to include Tailwind classes
-# ! this is to confirm if tailwind was successfully installed, when the project loads tailwind classes should take effect
+# ! this section will modify the app.jsx file to include Tailwind and daisyUi classes
+# ! this is to confirm if these were successfully installed, when the project loads the styling should take effect
 # ! can be disabled if not using Tailwind
 # Update ./src/App.jsx with the provided content
 	echo "import './App.css'" >> ./src/App.jsx
-	echo "" >> ./src/App.jsx
-	echo "function App() {" >> ./src/App.jsx
-	echo "  return (" >> ./src/App.jsx
-	echo "    <>" >> ./src/App.jsx
-	echo "      <div className='" >> ./src/App.jsx
-	echo "        grid" >> ./src/App.jsx
-	echo "        h-screen" >> ./src/App.jsx
-	echo "        place-items-center" >> ./src/App.jsx
-	echo "        text-6xl" >> ./src/App.jsx
-	echo "        text-base-content" >> ./src/App.jsx
-	echo "        '>" >> ./src/App.jsx
-	echo "        <h1>HAPPY CODING!</h1>" >> ./src/App.jsx
-	echo "      </div>" >> ./src/App.jsx
-	echo "    </>" >> ./src/App.jsx
-	echo "  )" >> ./src/App.jsx
-	echo "}" >> ./src/App.jsx
-	echo "" >> ./src/App.jsx
-	echo "export default App" >> ./src/App.jsx
+echo "" >> ./src/App.jsx
+echo "function App() {" >> ./src/App.jsx
+echo "  return (" >> ./src/App.jsx
+echo "    <>" >> ./src/App.jsx
+echo "      <div className='flex flex-col justify-center items-center gap-6 h-screen text-base-content'>" >> ./src/App.jsx
+echo "        <h1 className='text-6xl'>HAPPY CODING!</h1>" >> ./src/App.jsx
+echo "        <button" >> ./src/App.jsx
+echo "          className='btn btn-primary'" >> ./src/App.jsx
+echo "          onClick={() => {alert(\"You've just pressed a button. Well done!\")}}" >> ./src/App.jsx
+echo "        >" >> ./src/App.jsx
+echo "          Test button" >> ./src/App.jsx
+echo "        </button>" >> ./src/App.jsx
+echo "      </div>" >> ./src/App.jsx
+echo "    </>" >> ./src/App.jsx
+echo "  )" >> ./src/App.jsx
+echo "}" >> ./src/App.jsx
+echo "" >> ./src/App.jsx
+echo "export default App" >> ./src/App.jsx
+echo "" >> ./src/App.jsx
 	echo
 	echo "Modified ./src/App.jsx"
 else
