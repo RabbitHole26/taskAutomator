@@ -12,7 +12,8 @@
   - **0.0.2** (January 21, 2025)  
     - Added option to use Google Chrome as the default browser for the 'dev' script.
     - Supports selection between 'Windows + WSL' and 'Ubuntu' setups, based on default Chrome installation paths for Windows 11 and Ubuntu 24.04.
-  - **0.0.1** (Tailwind theme integration)
+  - **0.0.1** (January 21, 2025)
+    - Tailwind theme integration
   - **0.0.0** (Initial drafts of deployment scripts)
 
 ## Project overview
