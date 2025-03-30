@@ -10,7 +10,7 @@ echo
 
 # Install Tailwind CSS and its dependencies
 echo
-echo "Installing Tailwind v4"
+echo "Installing Tailwind CSS"
 echo
 # npm install -D tailwindcss postcss autoprefixer
 # npx tailwindcss init -p
@@ -18,11 +18,9 @@ npm install tailwindcss @tailwindcss/vite
 echo
 
 echo
-echo "Installing daisyUi v5 beta"
+echo "Installing daisyUi"
 echo
-# beta version of daisyUi supports new Tailwind config CSS only approach
-# TODO: update to install daisyUi v5 when it is released
-npm i -D daisyui@beta
+npm i daisyui@latest
 echo
 
 # Configure Vite to use Tailwind CSS

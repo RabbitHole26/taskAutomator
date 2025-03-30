@@ -236,7 +236,7 @@ echo "      <div className='flex flex-col justify-center items-center gap-6 h-sc
 echo "        <h1 className='text-6xl'>HAPPY CODING!</h1>" >> ./src/App.jsx
 echo "        <button" >> ./src/App.jsx
 echo "          className='btn btn-primary'" >> ./src/App.jsx
-echo "          onClick={() => {alert(\"You've just pressed a button. Well done!\")}}" >> ./src/App.jsx
+echo "          onClick={() => {alert(\"You've just pressed the button. Well done!\")}}" >> ./src/App.jsx
 echo "        >" >> ./src/App.jsx
 echo "          Test button" >> ./src/App.jsx
 echo "        </button>" >> ./src/App.jsx
