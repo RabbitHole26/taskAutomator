@@ -2,18 +2,21 @@
 
 ## Version
 
-### Current version: 0.0.3
-- **Release Date**: January 27, 2025
+### Current version: 0.0.4
+- **Release Date**: March 30, 2025
 - **Features**:
-  - Updated `tailwind-daisyUi.sh` to reflect new installation steps for Tailwind CSS v4 and DaisyUI v5 beta.
-  - Added a button with DaisyUI classes to `App.jsx` to verify successful installation.
+  - Updated `tailwind-daisyUi.sh` to install the latest stable version of DaisyUI instead of the beta version.
+  - Minor optimizations in `vite-react.sh` file.
 
 ### Version history:
+  - **0.0.3** (January 27, 2025)  
+    - Updated `tailwind-daisyUi.sh` to reflect new installation steps for Tailwind CSS v4 and DaisyUI v5 beta.
+    - Added a button with DaisyUI classes to `App.jsx` to verify successful installation.
   - **0.0.2** (January 21, 2025)  
     - Added option to use Google Chrome as the default browser for the 'dev' script.
     - Supports selection between 'Windows + WSL' and 'Ubuntu' setups, based on default Chrome installation paths for Windows 11 and Ubuntu 24.04.
   - **0.0.1** (January 21, 2025)
-    - Tailwind theme integration
+    - Tailwind theme integration.
   - **0.0.0** (Initial drafts of deployment scripts)
 
 ## Project overview
