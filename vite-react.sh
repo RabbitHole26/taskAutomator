@@ -85,10 +85,16 @@ echo
 
 # ! deployment scripts
 # #######################################################################################
-# DEPLOY TAILWIND + daisyUI
+# DEPLOY TAILWIND
 # #######################################################################################
 
-"$deployment_script_dir/tailwind-daisyUi.sh"
+"$deployment_script_dir/tailwind.sh"
+
+# #######################################################################################
+# DEPLOY daisyUi
+# #######################################################################################
+
+"$deployment_script_dir/daisyUi.sh"
 
 # #######################################################################################
 # STYLED COMPONENTS
@@ -228,25 +234,25 @@ if file_exists "./src/App.jsx"; then
 # ! can be disabled if not using Tailwind
 # Update ./src/App.jsx with the provided content
 	echo "import './App.css'" >> ./src/App.jsx
-echo "" >> ./src/App.jsx
-echo "function App() {" >> ./src/App.jsx
-echo "  return (" >> ./src/App.jsx
-echo "    <>" >> ./src/App.jsx
-echo "      <div className='flex flex-col justify-center items-center gap-6 h-screen text-base-content'>" >> ./src/App.jsx
-echo "        <h1 className='text-6xl'>HAPPY CODING!</h1>" >> ./src/App.jsx
-echo "        <button" >> ./src/App.jsx
-echo "          className='btn btn-primary'" >> ./src/App.jsx
-echo "          onClick={() => {alert(\"You've just pressed the button. Well done!\")}}" >> ./src/App.jsx
-echo "        >" >> ./src/App.jsx
-echo "          Test button" >> ./src/App.jsx
-echo "        </button>" >> ./src/App.jsx
-echo "      </div>" >> ./src/App.jsx
-echo "    </>" >> ./src/App.jsx
-echo "  )" >> ./src/App.jsx
-echo "}" >> ./src/App.jsx
-echo "" >> ./src/App.jsx
-echo "export default App" >> ./src/App.jsx
-echo "" >> ./src/App.jsx
+	echo "" >> ./src/App.jsx
+	echo "function App() {" >> ./src/App.jsx
+	echo "  return (" >> ./src/App.jsx
+	echo "    <>" >> ./src/App.jsx
+	echo "      <div className='flex flex-col justify-center items-center gap-6 h-screen text-base-content'>" >> ./src/App.jsx
+	echo "        <h1 className='text-6xl'>HAPPY CODING!</h1>" >> ./src/App.jsx
+	echo "        <button" >> ./src/App.jsx
+	echo "          className='btn btn-primary'" >> ./src/App.jsx
+	echo "          onClick={() => {alert(\"You've just pressed the button. Well done!\")}}" >> ./src/App.jsx
+	echo "        >" >> ./src/App.jsx
+	echo "          Test button" >> ./src/App.jsx
+	echo "        </button>" >> ./src/App.jsx
+	echo "      </div>" >> ./src/App.jsx
+	echo "    </>" >> ./src/App.jsx
+	echo "  )" >> ./src/App.jsx
+	echo "}" >> ./src/App.jsx
+	echo "" >> ./src/App.jsx
+	echo "export default App" >> ./src/App.jsx
+	echo "" >> ./src/App.jsx
 	echo
 	echo "Modified ./src/App.jsx"
 else
@@ -280,7 +286,7 @@ else
 	echo
 fi
 
-if is_commented "tailwind-daisyUi.sh"; then
+if is_commented "tailwind.sh" || is_commented "daisyUi.sh"; then
   if file_exists "./src/index.css"; then
     > ./src/index.css
     echo "Cleared ./src/index.css"
@@ -289,6 +295,17 @@ if is_commented "tailwind-daisyUi.sh"; then
     echo "Error: ./src/index.css not found"
     echo
   fi
+fi
+
+# Clear README.md file
+if file_exists "./README.md"; then
+	# Clear the content of README.md
+	> ./README.md
+	echo "Cleared ./README.md"
+	echo
+else
+	echo "Error: README.md not found"
+	echo
 fi
 
 # * Check if directory "./src/assets" exists to clear its content

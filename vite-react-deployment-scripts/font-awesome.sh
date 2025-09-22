@@ -15,6 +15,7 @@ npm i --save @fortawesome/free-regular-svg-icons
 echo
 npm i --save @fortawesome/free-brands-svg-icons
 echo
+echo
 echo "Installing FONTAWESOME FOR REACT"
 echo
 npm i --save @fortawesome/react-fontawesome@latest
