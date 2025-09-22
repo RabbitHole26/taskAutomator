@@ -2,13 +2,18 @@
 
 ## Version
 
-### Current version: 0.0.4
-- **Release Date**: March 30, 2025
+### Current version: 0.0.5
+- **Release Date**: September 22, 2025
 - **Features**:
-  - Updated `tailwind-daisyUi.sh` to install the latest stable version of DaisyUI instead of the beta version.
-  - Minor optimizations in `vite-react.sh` file.
+  - Split `tailwind-daisyUi.sh` into two separate scripts, `tailwind.sh` and `daisyUi.sh`, to allow finer control over which packages are installed by the `vite-react.sh` script.
+  - Clears the content of the `README.md` file when deploying the `vite-react.sh` script.
+- **Fixes**:
+  - Fix `is_commented` function to correctly handle file names containing regex-valid characters.
 
 ### Version history:
+  - **0.0.4** (March 30, 2025)
+    - Updated `tailwind-daisyUi.sh` to install the latest stable version of DaisyUI instead of the beta version.
+    - Minor optimizations in `vite-react.sh` file.
   - **0.0.3** (January 27, 2025)  
     - Updated `tailwind-daisyUi.sh` to reflect new installation steps for Tailwind CSS v4 and DaisyUI v5 beta.
     - Added a button with DaisyUI classes to `App.jsx` to verify successful installation.
@@ -138,6 +143,8 @@ The `vite-react.sh` script is designed to be extensible, allowing you to add you
 Each [deployment script](https://github.com/RabbitHole26/taskAutomator/tree/main/vite-react-deployment-scripts) contains hardcoded instructions for installing dependencies. If a dependency author changes the installation process, the corresponding deployment script must be updated. Always check the official documentation of the dependencies for any updates or changes.
 
 The `RUN VSCODE` section in [vite-react.sh](https://github.com/RabbitHole26/taskAutomator/blob/main/vite-react.sh) includes a command to run the `dev` script located in the `package.json` file of the scaffolded project. This command is delayed by 2 seconds (`sleep 2 && npm run dev`). You might want to increase the delay depending on how fast your machine is able to load VS Code.
+
+Both `tailwind.sh` and `daisyUi.sh` modify the `index.css` file in the Vite project. Keep this in mind when changing their execution order, as `tailwind.sh` clears `index.css` before applying its changes.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](https://github.com/RabbitHole26/taskAutomator/blob/main/LICENSE) file for details.

@@ -24,10 +24,13 @@ directory_exists() {
 }
 
 # * Check if a script line is commented out (0 if not commented, 1 if commented)
-is_commented() {
-  local script_line="$1"
-  grep -E "^\s*#.*$script_line" "$0" > /dev/null
-  return $?
+# is_commented() {
+#   local script_line="$1"
+#   grep -E "^\s*#.*$script_line" "$0" > /dev/null
+#   return $?
+# }
+is_commented() { 
+	awk -v s="$1" '$0 ~ /^[[:space:]]*#/ && index($0, s) { exit 0 } END { exit 1 }' "$0";
 }
 
 # * Convert user input to uppercase, this will normalize user input when asking Y/N questions

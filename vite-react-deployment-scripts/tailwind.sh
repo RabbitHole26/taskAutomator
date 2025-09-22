@@ -5,7 +5,7 @@
 source "$(dirname "${BASH_SOURCE[0]}")/../general-functions.sh"
 
 echo
-echo "########## DEPLOYING TAILWIND + daisyUI ##########"
+echo "########## DEPLOYING TAILWIND ##########"
 echo
 
 # Install Tailwind CSS and its dependencies
@@ -15,12 +15,6 @@ echo
 # npm install -D tailwindcss postcss autoprefixer
 # npx tailwindcss init -p
 npm install tailwindcss @tailwindcss/vite
-echo
-
-echo
-echo "Installing daisyUi"
-echo
-npm i daisyui@latest
 echo
 
 # Configure Vite to use Tailwind CSS
@@ -53,10 +47,10 @@ if file_exists "./src/index.css"; then
 	# echo "@tailwind components;" >> ./src/index.css
 	# echo "@tailwind utilities;" >> ./src/index.css
 	echo '@import "tailwindcss";' >> ./src/index.css
-	echo '@plugin "daisyui";' >> ./src/index.css
 
 	echo
 	echo "Appended Tailwind directives to ./src/index.css"
+	echo
 else
 	echo
 	echo "Error: ./src/index.css not found"
@@ -97,19 +91,6 @@ fi
 # 	echo "Error: tailwind.config.js not found"
 # fi
 
-if file_exists "./index.html"; then
-
-	# Add the "data-theme" attribute to the "html" tag (apply daisyUi light theme by default)
-	sed -i 's/<html lang="en">/<html lang="en" data-theme="dark">/' index.html
-	echo
-	echo "Added 'data-theme' attribute to the 'html' tag in 'index.html'."
-	echo
-else
-	echo
-	echo "Error: ./index.html not found"
-	echo
-fi
-
 echo
-echo -e "\e[33m TAILWIND + daisyUI DEPLOYED\e[0m"
+echo -e "\e[33m TAILWIND DEPLOYED\e[0m"
 echo
