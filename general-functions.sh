@@ -12,7 +12,7 @@ file_exists() {
 	else
 		return 1
 	fi
-	}
+}
 
 # * Check if a directory exists (0 dir exists, 1 dir doesn't exist)
 directory_exists() {

@@ -5,6 +5,20 @@
 #!/bin/bash
 
 # #######################################################################################
+# INTRO
+# #######################################################################################
+
+echo
+echo
+echo
+echo  "     ###########################################################"
+echo -e "     ##             \e[35mVITE + REACT + DEPENDENCIES\e[0m               ##"
+echo -e "     ##                 \e[31mInstallation script\e[0m                   ##"
+echo  "     ###########################################################"
+echo	
+echo
+
+# #######################################################################################
 # SET UP SCRIPT DIRECTORY
 # #######################################################################################
 
@@ -19,24 +33,117 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 source "$SCRIPT_DIR/general-functions.sh"
 
 # #######################################################################################
-# INTRO
-# #######################################################################################
-
-echo
-echo
-echo  "     ###########################################################"
-echo -e "     ##             \e[35mVITE + REACT + DEPENDENCIES\e[0m               ##"
-echo -e "     ##                 \e[31mInstallation script\e[0m                   ##"
-echo  "     ###########################################################"
-echo	
-echo
-
-# #######################################################################################
 # VARIABLES
 # #######################################################################################
 
 invalid_input_message="Invalid input. Please enter Y to continue or N to abort."
 deployment_script_dir="$SCRIPT_DIR/vite-react-deployment-scripts"
+
+# #######################################################################################
+# LOAD INSTALLATION CONFIG FILE
+# #######################################################################################
+
+CONFIG_FILE="$SCRIPT_DIR/install-config.env"
+
+if ! file_exists "$CONFIG_FILE"; then
+  echo
+  echo "Configuration file not found, creating default one ..."
+  cat <<EOF > "$CONFIG_FILE"
+# ------------------------------------------------------------------
+# INSTALLATION CONFIG
+# Toggle which deployment scripts to install
+# ------------------------------------------------------------------
+
+INSTALL_TAILWIND=true
+INSTALL_DAISYUI=true
+INSTALL_STYLED_COMPONENTS=true
+INSTALL_REACT_ROUTER_DOM=true
+INSTALL_SPINNERS=true
+INSTALL_FONT_AWESOME=true
+INSTALL_CLASSNAMES=true
+INSTALL_REACT_HOT_TOAST=true
+INSTALL_HEADLESSUI=true
+EOF
+
+  echo
+  echo "Default config created at: $CONFIG_FILE"
+  echo "Please review and adjust values before re-running the script."
+  echo
+  exit 1
+fi
+
+# #######################################################################################
+# SOURCE CONFIG FILE
+# #######################################################################################
+
+source "$CONFIG_FILE"
+
+# #######################################################################################
+# VERIFY CONFIG FILE
+# #######################################################################################
+
+# * List of allowed dependency keys
+allowed_keys=(
+  INSTALL_TAILWIND
+  INSTALL_DAISYUI
+  INSTALL_STYLED_COMPONENTS
+  INSTALL_REACT_ROUTER_DOM
+  INSTALL_SPINNERS
+  INSTALL_FONT_AWESOME
+  INSTALL_CLASSNAMES
+  INSTALL_REACT_HOT_TOAST
+  INSTALL_HEADLESSUI
+)
+
+# * Function to check if a value exists in an array
+function in_array() {
+  local value="$1"
+  shift
+  for element in "$@"; do
+    if [[ "$element" == "$value" ]]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+echo
+echo "########## VERIFYING CONFIGURATION ##########"
+echo
+
+invalid_found=false
+
+# * Read config file line by line
+while IFS='=' read -r key value; do
+  # Ignore comments and blank lines
+  [[ "$key" =~ ^#.*$ || -z "$key" ]] && continue
+
+  # Trim whitespace
+  key=$(echo "$key" | xargs)
+  value=$(echo "$value" | xargs)
+
+  # Check if key is valid
+  if ! in_array "$key" "${allowed_keys[@]}"; then
+    echo -e "\e[31mInvalid key:\e[0m $key"
+    invalid_found=true
+  fi
+
+  # Check if value is a boolean (true/false)
+  if [[ ! "$value" =~ ^(true|false)$ ]]; then
+    echo -e "\e[31mInvalid value for key '$key':\e[0m $value (must be \e[33mtrue\e[0m or \e[33mfalse\e[0m)"
+    invalid_found=true
+  fi
+done < "$CONFIG_FILE"
+
+if [ "$invalid_found" = true ]; then
+  echo
+  echo -e "Configuration errors found. Please fix '$CONFIG_FILE' and re-run the script."
+  echo
+  exit 1
+else
+  echo -e "\e[33m CONFIGURATION FILE VERIFIED SUCCESSFULLY\e[0m"
+  echo
+fi
 
 # #######################################################################################
 # SCAFFOLD PROJECT
@@ -47,7 +154,7 @@ echo "########## SCAFFOLDING THE PROJECT ##########"
 echo
 
 # * Create vite->react->js-swc project in the current folder
-npm create vite@latest . -- --template react-swc
+yes n | npm create vite@latest . -- --template react-swc
 
 while true; do
   # * Ask the user if they want to continue. Allow the user to exit script if Vite scaffolding fails or is aborted
@@ -83,61 +190,19 @@ echo
 echo -e "\e[33m PROJECT SCAFFOLDED\e[0m"
 echo
 
-# ! deployment scripts
 # #######################################################################################
-# DEPLOY TAILWIND
-# #######################################################################################
-
-"$deployment_script_dir/tailwind.sh"
-
-# #######################################################################################
-# DEPLOY daisyUi
+# DEPLOYMENT SCRIPTS
 # #######################################################################################
 
-"$deployment_script_dir/daisyUi.sh"
-
-# #######################################################################################
-# STYLED COMPONENTS
-# #######################################################################################
-
-"$deployment_script_dir/styled-components.sh"
-
-# #######################################################################################
-# REACT-ROUTER-DOM
-# #######################################################################################
-
-"$deployment_script_dir/react-router-dom.sh"
-
-# #######################################################################################
-# REACT SPINNERS
-# #######################################################################################
-
-"$deployment_script_dir/react-spinners.sh"
-
-# #######################################################################################
-# FONT AWESOME
-# #######################################################################################
-
-"$deployment_script_dir/font-awesome.sh"
-
-# #######################################################################################
-# CLASSNAMES
-# #######################################################################################
-
-"$deployment_script_dir/class-names.sh"
-
-# #######################################################################################
-# REACT-HOT-TOAST
-# #######################################################################################
-
-"$deployment_script_dir/react-hot-toast.sh"
-
-# #######################################################################################
-# HEADLESSUI
-# #######################################################################################
-
-"$deployment_script_dir/headless-ui.sh"
-# ! end of deployment scripts
+[ "$INSTALL_TAILWIND" = true ] && "$deployment_script_dir/tailwind.sh"
+[ "$INSTALL_DAISYUI" = true ] && "$deployment_script_dir/daisyUi.sh"
+[ "$INSTALL_STYLED_COMPONENTS" = true ] && "$deployment_script_dir/styled-components.sh"
+[ "$INSTALL_REACT_ROUTER_DOM" = true ] && "$deployment_script_dir/react-router-dom.sh"
+[ "$INSTALL_SPINNERS" = true ] && "$deployment_script_dir/react-spinners.sh"
+[ "$INSTALL_FONT_AWESOME" = true ] && "$deployment_script_dir/font-awesome.sh"
+[ "$INSTALL_CLASSNAMES" = true ] && "$deployment_script_dir/class-names.sh"
+[ "$INSTALL_TOAST" = true ] && "$deployment_script_dir/react-hot-toast.sh"
+[ "$INSTALL_HEADLESSUI" = true ] && "$deployment_script_dir/headless-ui.sh"
 
 # #######################################################################################
 # FINISHING TOUCHES
