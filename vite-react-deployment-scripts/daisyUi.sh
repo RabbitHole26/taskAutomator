@@ -36,7 +36,8 @@ fi
 if file_exists "./index.html"; then
 
 	# Add the "data-theme" attribute to the "html" tag (apply daisyUi light theme by default)
-	sed -i 's/<html lang="en">/<html lang="en" data-theme="dark">/' index.html
+	# sed -i 's/<html lang="en">/<html lang="en" data-theme="dark">/' index.html
+	sed -i.bak 's/<html lang="en">/<html lang="en" data-theme="dark">/' index.html && rm index.html.bak
 	echo
 	echo "Added 'data-theme' attribute to the 'html' tag in 'index.html'."
 	echo

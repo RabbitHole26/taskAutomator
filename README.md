@@ -2,16 +2,23 @@
 
 ## Version
 
-### Current version: 0.0.5
-- **Release Date**: October 15, 2025
-- **Features**:
-  - Updated mechanism for dependency selection — now fully managed via `install-config.env` instead of editing the main script:
-    - Added automatic creation of a default `install-config.env` file if it does not exist.
-    - Added verification of key-value pairs in `install-config.env` using the `allowed_keys` array.
-    - Expanded deployment script registration to require mapping each script both in the `allowed_keys` array and in the “Deployment scripts” section of the main script.
-  - Updated the Vite installation step to suppress default prompts asking to install dependencies or run the project (these are handled by the script).
+### Current version: 0.0.7
+- **Release Date**: February 22, 2025
+- **Fixes**:
+  - Fixed compatibility with BSD/macOS: All `sed -i` calls now use a backup parameter, ensuring scripts execute correctly on macOS and other BSD systems.
+  - Fixed the incorrect deployment parameter: The script now uses the correct `INSTALL_REACT_HOT_TOAST` variable, matching the config and deployment logic.
+  - Vite scaffolding: Removed the `yes n |` pipe in favor of the `--no-interactive` flag for Vite, ensuring predictable and reliable project setup.
+  - Indentation change: Scripts now use consistent indentation as per VS Code settings (this is intentional and will be kept).
+- **Known issues**:
+  - On BSD systems (including macOS), using `echo -e` with ANSI color codes (e.g., `\e[31m`) may print the escape sequences literally instead of applying color. This issue doesn't affect script functionality.
 
 ### Version history:
+  - **0.0.6** (October 15, 2025)
+    - Updated mechanism for dependency selection — now fully managed via `install-config.env` instead of editing the main script:
+      - Added automatic creation of a default `install-config.env` file if it does not exist.
+      - Added verification of key-value pairs in `install-config.env` using the `allowed_keys` array.
+      - Expanded deployment script registration to require mapping each script both in the `allowed_keys` array and in the “Deployment scripts” section of the main script.
+    - Updated the Vite installation step to suppress default prompts asking to install dependencies or run the project (these are handled by the script).
   - **0.0.5** (September 22, 2025)
     - Split `tailwind-daisyUi.sh` into two separate scripts, `tailwind.sh` and `daisyUi.sh`, to allow finer control over which packages are installed by the `vite-react.sh` script.
     - Clears the content of the `README.md` file when deploying the `vite-react.sh` script.
