@@ -20,20 +20,9 @@ echo
 # Configure Vite to use Tailwind CSS
 if file_exists "vite.config.js"; then
 
-	# Clear the content of the "vite.config.js" file
-	> ./vite.config.js
-
-	# Re-crete the "vite.config.js" file with Tailwind CSS plugin
-	echo "import { defineConfig } from 'vite'" >> ./vite.config.js
-	echo "import react from '@vitejs/plugin-react'" >> ./vite.config.js
-	echo "import tailwindcss from '@tailwindcss/vite'" >> ./vite.config.js
-	echo >> ./vite.config.js
-	echo "export default defineConfig({" >> ./vite.config.js
-	echo "  plugins: [" >> ./vite.config.js
-	echo "    tailwindcss()," >> ./vite.config.js
-	echo "		react()," >> ./vite.config.js
-	echo "  ]," >> ./vite.config.js
-	echo "})" >> ./vite.config.js
+	sed -i.bak '/import react from/a\
+import tailwindcss from "@tailwindcss/vite"' vite.config.js && rm vite.config.js.bak
+	sed -i.bak 's/\[react()/[react(), tailwindcss(), /' vite.config.js && rm vite.config.js.bak
 fi
 
 # Check if the file "./src/index.css" exists
