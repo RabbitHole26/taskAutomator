@@ -25,7 +25,7 @@ if file_exists "vite.config.js"; then
 
 	# Re-crete the "vite.config.js" file with Tailwind CSS plugin
 	echo "import { defineConfig } from 'vite'" >> ./vite.config.js
-	echo "import react from '@vitejs/plugin-react-swc'" >> ./vite.config.js
+	echo "import react from '@vitejs/plugin-react'" >> ./vite.config.js
 	echo "import tailwindcss from '@tailwindcss/vite'" >> ./vite.config.js
 	echo >> ./vite.config.js
 	echo "export default defineConfig({" >> ./vite.config.js
