@@ -2,17 +2,20 @@
 
 ## Version
 
-### Current version: 0.0.7
-- **Release Date**: February 22, 2025
-- **Fixes**:
-  - Fixed compatibility with BSD/macOS: All `sed -i` calls now use a backup parameter, ensuring scripts execute correctly on macOS and other BSD systems.
-  - Fixed the incorrect deployment parameter: The script now uses the correct `INSTALL_REACT_HOT_TOAST` variable, matching the config and deployment logic.
-  - Vite scaffolding: Removed the `yes n |` pipe in favor of the `--no-interactive` flag for Vite, ensuring predictable and reliable project setup.
-  - Indentation change: Scripts now use consistent indentation as per VS Code settings (this is intentional and will be kept).
+### Current version: 0.0.8
+- **Release Date**: April 15, 2026
+- **New features**:
+  - Added SEO template to `index.html`. Includes comments with best practice suggestions for SEO tags.
+  - Added `--host` flag to the Vite `dev` script in `package.json`, enabling localhost access for devices on the local network.
 - **Known issues**:
   - On BSD systems (including macOS), using `echo -e` with ANSI color codes (e.g., `\e[31m`) may print the escape sequences literally instead of applying color. This issue doesn't affect script functionality.
 
 ### Version history:
+  - **0.0.7** (February 22, 2026)
+    - Fixed compatibility with BSD/macOS: All `sed -i` calls now use a backup parameter, ensuring scripts execute correctly on macOS and other BSD systems.
+    - Fixed the incorrect deployment parameter: The script now uses the correct `INSTALL_REACT_HOT_TOAST` variable, matching the config and deployment logic.
+    - Vite scaffolding: Removed the `yes n |` pipe in favor of the `--no-interactive` flag for Vite, ensuring predictable and reliable project setup.
+    - Indentation change: Scripts now use consistent indentation as per VS Code settings (this is intentional and will be kept).
   - **0.0.6** (October 15, 2025)
     - Updated mechanism for dependency selection — now fully managed via `install-config.env` instead of editing the main script:
       - Added automatic creation of a default `install-config.env` file if it does not exist.
